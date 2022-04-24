@@ -12,6 +12,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/hail812/yii2-adminlte3/src/views'
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'T36UnCWDl1BXJmfW5sKzQfr7Q6KDtScI',
@@ -76,6 +83,14 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [ // here
+            'crud' => [ // generator name
+                'class' => 'yii\gii\generators\crud\Generator', // generator class
+                'templates' => [ // setting for our templates
+                    'yii2-adminlte3' => '@vendor/hail812/yii2-adminlte3/src/gii/generators/crud/default' // template name => path to template
+                ]
+            ]
+        ]
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
